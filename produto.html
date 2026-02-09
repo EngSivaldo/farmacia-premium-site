@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto | Farmácia Vida+</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos específicos para a página de detalhes */
+        .product-container { padding: 40px 8%; min-height: 80vh; }
+        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
+        .product-image img { width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        
+        .product-info h1 { font-size: 42px; margin-bottom: 10px; color: #333; }
+        .badge { background: #eef5ff; color: #0a7cff; padding: 5px 15px; border-radius: 20px; font-size: 14px; font-weight: 600; }
+        .price-tag { font-size: 32px; color: #0a7cff; font-weight: 700; margin: 25px 0; display: block; }
+        
+        .description-box { margin-bottom: 30px; line-height: 1.6; color: #666; }
+        .features { list-style: none; margin-bottom: 30px; }
+        .features li { margin-bottom: 10px; display: flex; align-items: center; gap: 10px; font-size: 15px; }
+        .features li::before { content: '✓'; color: #25d366; font-weight: bold; }
+
+        .trust-badges { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; padding-top: 30px; border-top: 1px solid #eee; }
+        .trust-item { font-size: 13px; color: #888; text-align: center; }
+
+        @media (max-width: 900px) {
+            .product-grid { grid-template-columns: 1fr; gap: 30px; }
+            .product-info h1 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav">
+            <div class="logo">Farmácia Vida+</div>
+            <nav>
+                <a href="index.html">Início</a>
+                <a href="produtos.html">Produtos</a>
+                <a class="whatsapp" href="https://wa.me/5599999999999" target="_blank">Ajuda</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="product-container" id="mainContent">
+        <div id="loading">Carregando detalhes...</div>
+    </main>
+
+    <footer>
+        <p>© 2026 Farmácia Vida+ — Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const nameFromURL = urlParams.get('produto');
+
+        // Base de dados centralizada (Pilar de Compartilhamento/CALMS)
+        let products = JSON.parse(localStorage.getItem("products")) || [
+            {id:1, name:"Vitamina C", price:29.9, img:"https://images.unsplash.com/photo-1584308666744-24d5c474f2ae"},
+            {id:2, name:"Shampoo", price:24.9, img:"https://images.unsplash.com/photo-1594824476967-48c8b964273f"},
+            {id:3, name:"Sabonete", price:9.9, img:"https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2"}
+        ];
+
+        const product = products.find(p => 
+            p.name.trim().toLowerCase() === nameFromURL?.trim().toLowerCase()
+        );
+
+        const main = document.getElementById("mainContent");
+
+        if (product) {
+            main.innerHTML = `
+                <div class="product-grid reveal active">
+                    <div class="product-image">
+                        <img src="${product.img}" alt="${product.name}">
+                    </div>
+                    <div class="product-info">
+                        <span class="badge">Disponível em Estoque</span>
+                        <h1>${product.name}</h1>
+                        <span class="price-tag">R$ ${product.price.toFixed(2)}</span>
+                        
+                        <div class="description-box">
+                            <p>O cuidado ideal para o seu dia a dia. Este produto foi selecionado rigorosamente para garantir a melhor eficácia e segurança para você e sua família.</p>
+                        </div>
+
+                        <ul class="features">
+                            <li>Qualidade farmacêutica garantida</li>
+                            <li>Entrega rápida em até 60 minutos</li>
+                            <li>Produto original com nota fiscal</li>
+                            <li>Validade longa garantida</li>
+                        </ul>
+
+                        <a href="https://wa.me/5599999999999?text=Olá! Tenho interesse no produto: ${product.name}. Gostaria de realizar o pedido." target="_blank">
+                            <button class="btn primary" style="width: 100%; font-size: 18px; padding: 18px;">
+                                Finalizar Pedido no WhatsApp
+                            </button>
+                        </a>
+
+                        <div class="trust-badges">
+                            <div class="trust-item">🔒 Compra Segura</div>
+                            <div class="trust-item">🚚 Entrega Expressa</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        } else {
+            // Tratamento de erro robusto (Pilar de Medição/Feedback)
+            main.innerHTML = `
+                <div style="text-align:center; padding: 100px 0;">
+                    <h1 style="font-size: 80px;">⚠️</h1>
+                    <h2>Produto não encontrado</h2>
+                    <p>Infelizmente não localizamos este item. Ele pode ter sido removido ou o nome está incorreto.</p>
+                    <br>
+                    <a href="produtos.html" class="btn secondary">Voltar para a Vitrine</a>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

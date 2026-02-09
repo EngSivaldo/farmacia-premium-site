@@ -1,141 +1,213 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmácia Vida+ | Saúde de Alta Performance</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        :root {
+            --glass: rgba(255, 255, 255, 0.8);
+            --accent: #0062ff;
+            --gradient: linear-gradient(135deg, #0062ff 0%, #00d4ff 100%);
+        }
 
-<title>Farmácia Vida+ | Sua saúde em primeiro lugar</title>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fcfdfe; }
 
-<meta name="description" content="Farmácia moderna com entrega rápida e atendimento profissional.">
+        /* Hero Glassmorphism */
+        .hero {
+            background: var(--gradient);
+            padding: 140px 8% 100px;
+            color: white;
+            clip-path: ellipse(150% 100% at 50% 0%);
+        }
 
-<link rel="stylesheet" href="style.css">
+        /* Seção de Depoimentos - O toque "Top" que você pediu */
+        .testimonials { padding: 80px 8%; background: #f4f7fa; }
+        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+        .testimonial-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .stars { color: #ffcc00; margin-bottom: 15px; font-size: 18px; }
+        .user-info { display: flex; align-items: center; gap: 15px; margin-top: 20px; }
+        .user-info img { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+        /* Vitrine de Produtos Moderna */
+        .product-card {
+            border: none;
+            background: white;
+            padding: 15px;
+            border-radius: 28px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .product-card img { border-radius: 20px; }
+        
+        /* Botão Flutuante Pulsante */
+        .float {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-<div class="nav">
-<div class="logo">Farmácia Vida+</div>
+    <header>
+        <div class="nav" style="background: rgba(255,255,255,0.85); backdrop-filter: blur(15px);">
+            <div class="logo" style="color: var(--accent); font-weight: 800; font-size: 26px;">VIDA<span style="color: #333;">+</span></div>
+            <nav>
+                <a href="#produtos" style="color: #333;">Produtos</a>
+                <a href="#depoimentos" style="color: #333;">Feedback</a>
+                <a href="#contato" style="color: #333;">Onde Estamos</a>
+                <a class="whatsapp" href="https://wa.me/5599999999999" target="_blank" style="background: var(--accent); border-radius: 12px;">Comprar Agora</a>
+            </nav>
+        </div>
+    </header>
 
-<nav>
-<a href="#servicos">Serviços</a>
-<a href="#produtos">Produtos</a>
-<a href="#contato">Contato</a>
-<a class="whatsapp" href="https://wa.me/5599999999999" target="_blank">WhatsApp</a>
-</nav>
-</div>
-</header>
+    <section class="hero">
+        <div class="hero-text">
+            <h1 style="font-size: 52px; line-height: 1.1;">Sua saúde merece <br><span style="text-decoration: underline;">tecnologia e cuidado.</span></h1>
+            <p style="font-size: 18px; opacity: 0.9; margin: 25px 0;">Entrega inteligente em 45 minutos e atendimento farmacêutico 24h via WhatsApp.</p>
+            <div style="display: flex; gap: 15px;">
+                <button class="btn secondary" style="background: white; color: var(--accent); padding: 18px 35px;" onclick="document.getElementById('produtos').scrollIntoView()">Ver Ofertas</button>
+            </div>
+        </div>
+        <div class="hero-img">
+            <img src="https://images.unsplash.com/photo-1576602976047-174e57a47881" alt="Saúde" style="border-radius: 40px; transform: rotate(-2deg); box-shadow: 30px 30px 60px rgba(0,0,0,0.3);">
+        </div>
+    </section>
 
-<!-- HERO -->
-<section class="hero">
-<div class="hero-text">
-<h1>Seu cuidado com a saúde começa aqui</h1>
-<p>Medicamentos, serviços farmacêuticos e entrega rápida na sua casa.</p>
+    <section id="produtos" class="reveal active" style="padding: 100px 8%;">
+        <div style="text-align: center; margin-bottom: 60px;">
+            <h2 style="font-size: 36px;">Vitrine Tecnológica</h2>
+            <p style="color: #666;">Produtos com rastreabilidade e procedência garantida.</p>
+        </div>
+        <div id="vitrineHome" class="modern-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+            </div>
+    </section>
 
-<a href="https://wa.me/5599999999999" target="_blank">
-<button class="btn primary">Fale no WhatsApp</button>
-</a>
+    <section id="depoimentos" class="testimonials reveal">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h2 style="font-size: 36px;">O que dizem nossos clientes</h2>
+            <p style="color: #666;">A confiança de quem cuida da saúde conosco todos os dias.</p>
+        </div>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"A entrega foi absurdamente rápida. O site é muito fácil de usar e o atendimento no WhatsApp me ajudou com a receita."</p>
+                <div class="user-info">
+                    <img src="https://i.pravatar.cc/150?u=1" alt="Cliente">
+                    <div>
+                        <strong>Ricardo Souza</strong>
+                        <span style="display: block; font-size: 12px; color: #888;">Cliente Prime</span>
+                    </div>
+                </div>
+            </div>
 
-<a href="#produtos">
-<button class="btn secondary">Ver Produtos</button>
-</a>
-</div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"Melhor farmácia da região. Os produtos chegam sempre bem embalados e os preços são imbatíveis. Recomendo muito!"</p>
+                <div class="user-info">
+                    <img src="https://i.pravatar.cc/150?u=2" alt="Cliente">
+                    <div>
+                        <strong>Mariana Silva</strong>
+                        <span style="display: block; font-size: 12px; color: #888;">Cliente Verificada</span>
+                    </div>
+                </div>
+            </div>
 
-<img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88">
-</section>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"O painel de vitaminas é excelente. Encontrei tudo o que precisava e recebi em menos de 1 hora em casa."</p>
+                <div class="user-info">
+                    <img src="https://i.pravatar.cc/150?u=3" alt="Cliente">
+                    <div>
+                        <strong>Carla Mendes</strong>
+                        <span style="display: block; font-size: 12px; color: #888;">Cliente Fiel</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- SERVIÇOS -->
-<section id="servicos">
-<h2 class="title">Serviços Farmacêuticos</h2>
+   
+    <section id="contato" style="padding: 100px 8%; background: #f8fafc;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; max-width: 1200px; margin: 0 auto;">
+          
+          <div style="background: white; padding: 40px; border-radius: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.05);">
+              <h2 style="font-size: 32px; margin-bottom: 25px; color: #1e293b;">Nossa Unidade</h2>
+              <div style="margin-bottom: 20px; display: flex; gap: 15px;">
+                  <span style="color: #0062ff; font-weight: bold;">📍</span>
+                  <p><strong>Endereço:</strong><br>Av. da Saúde, 2026 - Centro<br>São Paulo - SP</p>
+              </div>
+              <div style="margin-bottom: 30px; display: flex; gap: 15px;">
+                  <span style="color: #0062ff; font-weight: bold;">📞</span>
+                  <p><strong>Atendimento:</strong><br>0800 123 4567</p>
+              </div>
+              <a href="https://wa.me/5599999999999" target="_blank" style="background: #25d366; color: white; padding: 18px; border-radius: 15px; text-decoration: none; display: flex; justify-content: center; align-items: center; gap: 10px; font-weight: 700; transition: 0.3s;">
+                  Falar no WhatsApp Agora
+              </a>
+          </div>
+          
+          <div style="height: 450px; border-radius: 30px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 5px solid white;">
+              <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.1975!2d-46.658!3d-23.561!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDMzJzM5LjYiUyA0NiwzOScyOC44Ilc!5e0!3m2!1spt-BR!2sbr!4v1700000000000" 
+                  width="100%" 
+                  height="100%" 
+                  style="border:0;" 
+                  allowfullscreen="" 
+                  loading="lazy" 
+                  referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+          </div>
+  
+      </div>
+  </section>
 
-<div class="grid">
+    <footer>
+        <p>© 2026 Farmácia Vida+ | Engineered for Health Excellence.</p>
+    </footer>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1588776814546-daab30f310ce">
-<div class="card-body">
-<h3>Aplicação de Injetáveis</h3>
-<p>Profissionais capacitados e ambiente seguro.</p>
-</div>
-</div>
+    <a class="float" href="https://wa.me/5599999999999" target="_blank">💬</a>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef">
-<div class="card-body">
-<h3>Aferição de Pressão</h3>
-<p>Monitoramento rápido e preciso.</p>
-</div>
-</div>
+    <script src="script.js"></script>
+    <script>
+        // Lógica Sênior: Carregamento Assíncrono da Vitrine
+        function initApp() {
+            const products = JSON.parse(localStorage.getItem("products")) || [
+                {id:1, name:"Vitamina C", price:29.9, img:"https://images.unsplash.com/photo-1584308666744-24d5c474f2ae"},
+                {id:2, name:"Shampoo", price:24.9, img:"https://images.unsplash.com/photo-1594824476967-48c8b964273f"},
+                {id:3, name:"Sabonete", price:9.9, img:"https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2"}
+            ];
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1580281657527-47a4d6d3c87b">
-<div class="card-body">
-<h3>Teste de Glicemia</h3>
-<p>Resultados imediatos.</p>
-</div>
-</div>
-
-</div>
-</section>
-
-<!-- PRODUTOS -->
-<section id="produtos">
-<h2 class="title">Produtos em Destaque</h2>
-
-<div class="grid">
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae">
-<div class="card-body"><h3>Vitaminas</h3></div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f">
-<div class="card-body"><h3>Beleza</h3></div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2">
-<div class="card-body"><h3>Higiene</h3></div>
-</div>
-
-</div>
-</section>
-
-<!-- CTA -->
-<section class="cta">
-<h2>Entrega rápida na sua casa</h2>
-<p>Peça agora pelo WhatsApp</p>
-
-<a href="https://wa.me/5599999999999">
-<button class="btn primary">Pedir Agora</button>
-</a>
-</section>
-
-<!-- CONTATO -->
-<section id="contato">
-<h2 class="title">Contato</h2>
-
-<p>📍 Rua Exemplo, 123 - Centro</p>
-<p>📞 (11) 99999-0000</p>
-
-<iframe src="https://www.google.com/maps?q=São+Paulo&output=embed"></iframe>
-
-<form id="form">
-<input type="text" placeholder="Nome" id="nome">
-<input type="email" placeholder="Email" id="email">
-<textarea placeholder="Mensagem" id="msg"></textarea>
-<button class="btn primary">Enviar</button>
-</form>
-</section>
-
-<footer>
-<p>© 2026 Farmácia Vida+ — Todos os direitos reservados</p>
-</footer>
-
-<a class="float" href="https://wa.me/5599999999999">💬</a>
-
-<script src="script.js"></script>
+            const vitrine = document.getElementById("vitrineHome");
+            vitrine.innerHTML = products.slice(0, 3).map(p => `
+                <div class="product-card">
+                    <img src="${p.img}" alt="${p.name}" style="width:100%; height:220px; object-fit:cover;">
+                    <div style="padding: 20px 10px;">
+                        <h3 style="font-size: 20px;">${p.name}</h3>
+                        <p style="color: var(--accent); font-weight: 800; font-size: 24px; margin: 15px 0;">R$ ${p.price.toFixed(2)}</p>
+                        <button class="btn primary" style="width:100%; margin:0; border-radius: 14px;" 
+                                onclick="window.location='produto.html?produto=${encodeURIComponent(p.name)}'">
+                            Comprar Agora
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        window.onload = initApp;
+    </script>
 </body>
 </html>

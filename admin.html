@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Painel Admin</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<section>
+<h2>Admin - Produtos</h2>
+
+<input id="name" placeholder="Nome do produto">
+<input id="price" placeholder="Preço">
+<input id="img" placeholder="URL imagem">
+
+<button class="btn primary" onclick="addProduct()">
+Adicionar Produto
+</button>
+
+<h3>Lista</h3>
+<div id="list"></div>
+
+</section>
+
+<script src="script.js"></script>
+<script>renderAdmin()</script>
+
+</body>
+</html>
